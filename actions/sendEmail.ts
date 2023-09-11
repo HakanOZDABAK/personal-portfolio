@@ -5,11 +5,13 @@ import { Resend } from "resend";
 import { validateString, getErrorMessage } from "@/lib/utils";
 import ContactFormEmail from "@/email/contactFormEmail";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend("re_C9Kv7Mrc_MCZ337K1iuYKiQy59MBeMma7");
 
 export const sendEmail = async (formData: FormData) => {
+  const senderName = formData.get("senderName");
+  const senderSurName = formData.get("senderSurName");
   const senderEmail = formData.get("senderEmail");
-  const message = formData.get("message");
+  const sendMessage = formData.get("message");
 
   // simple server-side validation
   if (!validateString(senderEmail, 500)) {
@@ -17,7 +19,7 @@ export const sendEmail = async (formData: FormData) => {
       error: "Invalid sender email",
     };
   }
-  if (!validateString(message, 5000)) {
+  if (!validateString(sendMessage, 5000)) {
     return {
       error: "Invalid message",
     };
@@ -26,14 +28,11 @@ export const sendEmail = async (formData: FormData) => {
   let data;
   try {
     data = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
-      to: "mailto:hakanozdabak2000@hotmail.com",
+      from: "Contact <hakanozdabak.dev@resend.dev>",
+      to: "hakanozdabak2000@hotmail.com",
       subject: "Message from contact form",
-      reply_to: senderEmail,
-      react: React.createElement(ContactFormEmail, {
-        message: message,
-        senderEmail: senderEmail,
-      }),
+      text:`Name=${senderName}\nSurName=${senderSurName}\nEmail = ${senderEmail}\nMessage = ${sendMessage}`,
+      reply_to: "hakanozdabak2000@hotmail.com",
     });
   } catch (error: unknown) {
     return {

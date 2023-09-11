@@ -32,11 +32,7 @@ export default function Contact() {
       <SectionHeading>Contact me</SectionHeading>
 
       <p className="text-gray-700 -mt-6 dark:text-white/80">
-        Please contact me directly at{" "}
-        <a className="underline" href="mailto:hakanozdabak2000@hotmail.com">
-          example@gmail.com
-        </a>{" "}
-        or through this form.
+       You can contact me by filling out the information below. I will read all your message gladly :)
       </p>
 
       <form
@@ -53,13 +49,28 @@ export default function Contact() {
         }}
       >
         <input
-          className="h-14 px-4 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
-          name="senderEmail"
-          type="email"
+          className="h-14 px-4 mt-3 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          name="senderName"
+          type="name"
           required
           maxLength={500}
-          placeholder="Your email"
+          placeholder="Your Name"
         />
+        <input
+          className="h-14 px-4 mt-3 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          name="senderSurName"
+          type="name"
+          required
+          maxLength={500}
+          placeholder="Your Surname"
+        />        <input
+        className="h-14 px-4 mt-3 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+        name="senderEmail"
+        type="email"
+        required
+        maxLength={500}
+        placeholder="Your email"
+      />
         <textarea
           className="h-52 my-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
           name="message"
