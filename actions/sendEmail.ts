@@ -5,7 +5,7 @@ import { Resend } from "resend";
 import { validateString, getErrorMessage } from "@/lib/utils";
 import ContactFormEmail from "@/email/contactFormEmail";
 
-const resend = new Resend("re_C9Kv7Mrc_MCZ337K1iuYKiQy59MBeMma7");
+const resend = new Resend("API");
 
 export const sendEmail = async (formData: FormData) => {
   const senderName = formData.get("senderName");
@@ -28,11 +28,11 @@ export const sendEmail = async (formData: FormData) => {
   let data;
   try {
     data = await resend.emails.send({
-      from: "Contact <hakanozdabak.dev@resend.dev>",
-      to: "hakanozdabak2000@hotmail.com",
+      from: "Contact <MAIL>",
+      to: "MAIL",
       subject: "Message from contact form",
       text:`Name=${senderName}\nSurName=${senderSurName}\nEmail = ${senderEmail}\nMessage = ${sendMessage}`,
-      reply_to: "hakanozdabak2000@hotmail.com",
+      reply_to: "MAIL",
     });
   } catch (error: unknown) {
     return {
